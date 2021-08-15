@@ -1,23 +1,49 @@
-import React from 'react';
-import { View, Text, StyleSheet, Button } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, Button, TouchableWithoutFeedback, Keyboard } from 'react-native';
 
 import Card from '../components/Card';
 import Colors from '../constants/colors';
 import Input from '../components/Input';
 
 const StartGameScreen = props => {
+
+    const [enteredValue, setEnteredValue] = useState('');
+
+    const numberInputHandler = inputText => {
+        // replacing anything that is not a number 0-9 globally 
+        // in the entire text with an empty string.
+        // drop any non-number of value
+        // I cant put any letters, just numbers
+        setEnteredValue(inputText.replace(/[^0-9]/g, ''))
+    };
+
     return (
-        <View style={styles.screen}>
-            <Text style={styles.title}>Start a New Game!</Text>
-            <Card style={styles.inputContainer}>
-                <Text>Select a Number</Text>
-                <Input style={styles.input} blurOnSubmit autoCapitalize='none' autoCorrect={false} keyboardType='number-pad' maxLength={2} />
-                <View style={styles.buttonContainer}>
-                    <View style={styles.button}><Button title="Reset" onPress={() => { }} color={Colors.secondary} /></View>
-                    <View style={styles.button}><Button title="Confirm" onPress={() => { }} color={Colors.primary} /></View>
-                </View>
-            </Card>
-        </View>
+        <TouchableWithoutFeedback onPress={() => {
+            // Keyboard is an API from React Native where we can interact
+            // with the native device itself. In this case, keyboard 
+
+            // when touch somewhere else outside the keyboard, we dismiss the keyboard
+            Keyboard.dismiss();
+        }}>
+            <View style={styles.screen}>
+                <Text style={styles.title}>Start a New Game!</Text>
+                <Card style={styles.inputContainer}>
+                    <Text>Select a Number</Text>
+                    <Input
+                        style={styles.input}
+                        blurOnSubmit autoCapitalize='none'
+                        autoCorrect={false}
+                        keyboardType='number-pad'
+                        maxLength={2}
+                        onChangeText={numberInputHandler}
+                        value={enteredValue} />
+                    <View style={styles.buttonContainer}>
+                        <View style={styles.button}><Button title="Reset" onPress={() => { }} color={Colors.secondary} /></View>
+                        <View style={styles.button}><Button title="Confirm" onPress={() => { }} color={Colors.primary} /></View>
+                    </View>
+                </Card>
+            </View>
+        </TouchableWithoutFeedback>
     )
 };
 
