@@ -11,10 +11,10 @@ const StartGameScreen = props => {
             <Text style={styles.title}>Start a New Game!</Text>
             <Card style={styles.inputContainer}>
                 <Text>Select a Number</Text>
-                <Input style={styles.input} />
+                <Input style={styles.input} blurOnSubmit autoCapitalize='none' autoCorrect={false} keyboardType='number-pad' maxLength={2} />
                 <View style={styles.buttonContainer}>
-                    <View style={styles.button}><Button title="Reset" onPress={() => { }} color={Colors.secondary}/></View>
-                    <View style={styles.button}><Button title="Confirm" onPress={() => { }} color={Colors.primary}/></View>
+                    <View style={styles.button}><Button title="Reset" onPress={() => { }} color={Colors.secondary} /></View>
+                    <View style={styles.button}><Button title="Confirm" onPress={() => { }} color={Colors.primary} /></View>
                 </View>
             </Card>
         </View>
@@ -46,7 +46,8 @@ const styles = StyleSheet.create({
         width: 100
     },
     input: {
-        width:50
+        width: 50,
+        textAlign: 'center'
     }
 });
 
