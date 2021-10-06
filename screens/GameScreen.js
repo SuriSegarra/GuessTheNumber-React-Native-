@@ -115,12 +115,14 @@ const styles = StyleSheet.create({
         width: 400,
         maxWidth: '90%',
     },
-    list: {
-        alignItems:'center'
-    },
     listContainer: {
         flex: 1,
         width: '80%'
+    },
+    list: {
+        flexGrow:1,
+        alignItems:'center',
+        justifyContent: 'flex-end'
     },
     listItem: {
         borderColor: '#ccc',
