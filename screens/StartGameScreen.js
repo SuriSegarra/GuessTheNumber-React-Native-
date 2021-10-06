@@ -16,10 +16,6 @@ const StartGameScreen = props => {
     const [selectedNumber, setSelectedNumber] = useState();
 
     const numberInputHandler = inputText => {
-        // replacing anything that is not a number 0-9 globally 
-        // in the entire text with an empty string.
-        // drop any non-number of value
-        // I cant put any letters, just numbers
         setEnteredValue(inputText.replace(/[^0-9]/g, ''))
     };
 
@@ -31,7 +27,7 @@ const StartGameScreen = props => {
 
     const confirmInputHandler = () => {
         const choseNumber = parseInt(enteredValue);
-        // isNaN checks for oyu if this is not a number
+
         if (isNaN(choseNumber) || choseNumber <= 0 || choseNumber > 99) {
             Alert.alert('Invalid Number!', 'Number has to be a number between 1 and 99', [{ text: 'Okay', style: 'destructive', onPress: resetInputHandler }])
             return;
@@ -58,10 +54,6 @@ const StartGameScreen = props => {
 
     return (
         <TouchableWithoutFeedback onPress={() => {
-            // Keyboard is an API from React Native where we can interact
-            // with the native device itself. In this case, keyboard 
-
-            // when touch somewhere else outside the keyboard, we dismiss the keyboard
             Keyboard.dismiss();
         }}>
             <View style={styles.screen}>
